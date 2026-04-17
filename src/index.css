@@ -8,7 +8,88 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+html, body, #root {
+  height: 100%;
+  background: #0b0f1a;
+  overflow-x: hidden;
+}
+
 .font-headline {
   font-family: 'Space Grotesk', sans-serif
+}
+
+.smoke {
+  position: absolute;
+  width: 900px;
+  height: 900px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.35;
+  mix-blend-mode: screen;
+  background: radial-gradient(
+      circle,
+      rgba(158, 30, 30, 0.158) 0%,
+      rgba(104, 13, 48, 0.63) 25%,
+      rgba(153, 47, 47, 0.877) 45%,
+      rgba(206, 13, 13, 0.671) 70%
+  );
+  animation: floatSmoke 5s infinite linear;
+  animation-timing-function: linear;
+}
+
+.smoke-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  isolation: isolate;
+}
+
+.smoke1 {
+  top: 10%;
+  left: 15%;
+  animation-duration: 45s;
+}
+
+.smoke2 {
+  top: 40%;
+  left: 60%;
+  animation-duration: 60s;
+  opacity: 0.25;
+}
+
+.smoke3 {
+  top: 70%;
+  left: 25%;
+  animation-duration: 60s;
+  opacity: 0.3;
+}
+
+.smoke4 {
+  top: 20%;
+  left: 80%;
+  animation-duration: 90s;
+  opacity: 0.2;
+}
+
+@keyframes floatSmoke {
+  0% {
+    transform: translate(-10%, -10%) scale(1) rotate(0deg);
+  }
+
+  25% {
+    transform: translate(40%, -20%) scale(1.1) rotate(90deg);
+  }
+
+  50% {
+    transform: translate(-30%, 30%) scale(1.25) rotate(180deg);
+  }
+
+  75% {
+    transform: translate(20%, 50%) scale(1.15) rotate(270deg);
+  }
+
+  100% {
+    transform: translate(-10%, -10%) scale(1) rotate(360deg);
+  }
 }
 
