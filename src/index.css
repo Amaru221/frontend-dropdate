@@ -10,7 +10,7 @@ body {
 
 html, body, #root {
   height: 100%;
-  background: #0b0f1a;
+  background: #000000b6;
   overflow-x: hidden;
 }
 
@@ -92,4 +92,76 @@ html, body, #root {
     transform: translate(-10%, -10%) scale(1) rotate(360deg);
   }
 }
+
+/* src/pages/Calendar.css */
+.custom-datepicker {
+  /* Cambiar los colores y otros estilos */
+  background-color: #0e0d0d;
+  color: #333;
+  border: 1px  #f0f0f0 !important; /* Borde fino de color blanco */
+  border-radius: 8px !important; /* Bordes redondeados */
+  box-shadow:
+    0px 2px 6px 4px rgba(255, 253, 253, 0.219), /* Sombra difuminada suave */
+    inset 0 -3em 3em rgba(102, 99, 99, 0.1) !important;
+}
+
+.custom-datepicker .react-datepicker__header {
+  background-color: #2b2b2ba8;
+  color: rgba(10, 2, 2, 0.137);
+}
+
+.custom-datepicker .react-datepicker__current-month{
+  color: white;
+  text-transform: uppercase;
+
+}
+
+.custom-datepicker .react-datepicker__month-container{
+  background-color: #000000de;
+  
+}
+
+.custom-datepicker .react-datepicker__day{
+  color: rgba(240, 238, 238, 0.664);
+}
+.custom-datepicker .react-datepicker__day:not([aria-disabled=true]):hover, .react-datepicker__month-text:not([aria-disabled=true]):hover, .react-datepicker__quarter-text:not([aria-disabled=true]):hover, .react-datepicker__year-text:not([aria-disabled=true]):hover{
+  background: #333;
+  color: white;
+}
+
+.custom-datepicker .react-datepicker__day-name{
+  color: #757575;
+}
+
+.custom-datepicker .react-datepicker__day--selected, 
+.custom-datepicker .react-datepicker__day--in-range {
+  background-color: #5a5775!important;
+  color: white !important;
+}
+
+.custom-datepicker .react-datepicker__day--in-selecting-range {
+  background: #333 !important;
+  color: white;
+}
+
+.custom-datepicker .react-datepicker__day--keyboard-selected{
+  background-color: #333;
+  color: white;
+}
+
+.custom-datepicker .react-datepicker__day--range-start{
+  background-color: #aba0dd !important;
+  color: rgb(55, 0, 105) !important;
+}
+
+.custom-datepicker .react-datepicker__day--range-end{
+  
+  background-color: #aba0dd !important;
+  color: rgb(55, 0, 105) !important;
+}
+
+.custom-datepicker .react-datepicker__header{
+  border: 1px #aeaeae;
+}
+
 
