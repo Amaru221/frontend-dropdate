@@ -17,6 +17,21 @@ export function formatReleaseDate(date) {
   return formatted;
 }
 
+export function formatReleaseFullDate(date) {
+  if (!date) return "TBA";
+
+  const d = new Date(date);
+  const now = new Date();
+
+  const formatted = new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  }).format(d);
+
+  return formatted;
+}
+
 export function getTimeLeft(date) {
   const diff = new Date(date) - new Date();
 
