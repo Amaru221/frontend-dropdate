@@ -1,10 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from './pages/Home'
+import { Login } from "./pages/Login";
 
 const router = createBrowserRouter([
   {
     children: [
       {path: '/', element: <Home />},
+      {path: '/login', element: <Login />},
       {path: '/profile', element: <></>},
       {path: '/calendar', element: <></>},
       {path: '/calendar', element: <></>},
