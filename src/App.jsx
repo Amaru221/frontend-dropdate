@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from './pages/Home'
 import { Login } from "./pages/Login";
+import Calendar from "./pages/Calendar";
 
 const router = createBrowserRouter([
   {
@@ -8,8 +9,7 @@ const router = createBrowserRouter([
       {path: '/', element: <Home />},
       {path: '/login', element: <Login />},
       {path: '/profile', element: <></>},
-      {path: '/calendar', element: <></>},
-      {path: '/calendar', element: <></>},
+      {path: '/calendar', element: <Calendar/>},
     ]
   }
 ])
