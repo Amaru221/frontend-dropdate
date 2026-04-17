@@ -121,7 +121,7 @@ export function Calendar() {
                             </div>
 
                             {/* Filtros y Busqueda */}
-                            <div className="flex flex-col  bg-[#1b1b1b] p-4 rounded-xl border border-white/5 flex flex-wrap gap-3">
+                            <div className="flex flex-col bg-[#1b1b1b] p-4 rounded-xl border border-white/5 flex-wrap gap-3">
                                 <div className='flex flex-wrap gap-3 items-center '>
                                     <div className="h-8 flex items-center bg-[#353535] px-3 py-2 rounded-lg gap-2 text-sm cursor-pointer">
                                         <AlignVerticalJustifyStart size={15} />
@@ -147,7 +147,7 @@ export function Calendar() {
 
                         {/* Contenido por días */}
                         {/* Cabecera fecha con separador + fechas de dirección */}
-                        
+
                     </div>
                 </div>
             </main >
