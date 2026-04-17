@@ -146,6 +146,8 @@ export function Calendar() {
 
 
                         {/* Contenido por días */}
+                        {/* Cabecera fecha con separador + fechas de dirección */}
+                        
                     </div>
                 </div>
             </main >
