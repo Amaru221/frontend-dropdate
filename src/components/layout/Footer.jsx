@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="w-full py-12 bg-surface-container-lowest border-t border-white/5">
+    <footer className="max-h-50 w-full py-12 bg-surface-container-lowest border-t border-white/5">
       <div className="flex flex-col md:flex-row justify-between items-center px-12 max-w-screen-2xl mx-auto gap-8">
         
         {/* Brand */}
