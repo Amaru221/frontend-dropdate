@@ -124,7 +124,7 @@ export function Calendar() {
                             <div className="flex flex-col bg-[#1b1b1b] p-4 rounded-xl border border-white/5 flex-wrap gap-3">
                                 <div className='flex flex-wrap gap-3 items-center '>
                                     <div className="h-8 flex items-center bg-[#353535] px-3 py-2 rounded-lg gap-2 text-sm cursor-pointer">
-                                        <AlignVerticalJustifyStart size={15} />
+                                        <AlignVerticalJustifyStart size={15} strokeWidth={1.2} />
                                         <span className="font-label uppercase font-bold text-[10px] tracking-wider">Verticals</span>
                                     </div>
                                     <button className="max-h-7 px-3 py-1.5 bg-[#a4c9ff]/10 border border-[#a4c9ff]/20 text-tertiary text-[10px] font-bold rounded uppercase tracking-widest cursor-pointer">All Platforms</button>
