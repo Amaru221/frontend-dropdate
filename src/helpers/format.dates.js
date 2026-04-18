@@ -17,6 +17,17 @@ export function formatReleaseDate(date) {
   return formatted;
 }
 
+export function weekdayFormatted(date){
+
+  const d = new Date(date);
+  const weekDay = new Intl.DateTimeFormat("en-US", {
+      weekday: "long",
+    }).format(d);
+  return weekDay;
+}
+
+  
+
 export function formatReleaseFullDate(date) {
   if (!date) return "TBA";
 
