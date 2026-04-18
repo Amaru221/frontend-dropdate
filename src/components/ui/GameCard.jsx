@@ -36,12 +36,12 @@ export default function GameCard({ game }) {
       {/* 📦 Content */}
       <div className="absolute bottom-0 w-full p-5">
           {/* 🔴 LIVE INDICATOR */}
-        <div class="inline-flex items-center space-x-2 bg-[#c9bfff]/20 backdrop-blur-md px-3 py-1 rounded-full border border-[#c9bfff]/30 mb-6">
-          <span class="relative flex h-2 w-2">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#c9bfff] opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-[#c9bfff]"></span>
+        <div className="inline-flex items-center space-x-2 bg-[#c9bfff]/20 backdrop-blur-md px-3 py-1 rounded-full border border-[#c9bfff]/30 mb-6">
+          <span className="relative flex h-2 w-2">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#c9bfff] opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-[#c9bfff]"></span>
           </span>
-          <span class="text-[10px] uppercase tracking-[0.2em] font-bold text-[#c9bfff]">Global Release • {formatReleaseDate(game.releaseDate)}</span>
+          <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#c9bfff]">Global Release • {formatReleaseDate(game.releaseDate)}</span>
         </div>
         {/* 🎮 Title */}
         <h3 className="font-headline text-white font-bold text-7xl leading-tight">
