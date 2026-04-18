@@ -1,5 +1,5 @@
 // src/pages/Calendar.jsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DatePicker, { registerLocale } from "react-datepicker";
 import { formatReleaseFullDate } from '../helpers/format.dates';
 //import es from 'date-fns/locale/es'; // Importar el idioma español
@@ -11,42 +11,58 @@ import Footer from '../components/layout/Footer';
 import Sidebar from '../components/layout/Sidebar';
 import ScrollToTopButton from '../components/ui/ScrollToTopButton';
 import { AlignVerticalJustifyStart } from 'lucide-react';
+import { getGamesRelasesRange } from '../api/games.api';
+import GameCard from '../components/calendar/GameCard';
+import defaultImage from "../assets/steam_logo_art_2000.0.webp";
+import { groupGamesByDate } from '../helpers/clasifyGameByDates';
+import { formatReleaseDate, weekdayFormatted } from '../helpers/format.dates';
 
 
 //registerLocale('es', es);
 registerLocale('en-US', enUS);
 export function Calendar() {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(new Date());
+    const [games, setGames] = useState([]);
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+    const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const handleTodayClick = () => {
-    setStartDate(new Date());
-    setEndDate(new Date());
-  };
+    const handleTodayClick = () => {
+        setStartDate(new Date());
+        setEndDate(new Date());
+    };
 
-  const handleWeekClick = () => {
-    const startOfWeek = new Date();
-    const endOfWeek = new Date(startOfWeek);
-    startOfWeek.setDate(endOfWeek.getDate() - startOfWeek.getDay());
-    endOfWeek.setDate(startOfWeek.getDate() + 6);
-    setStartDate(startOfWeek);
-    setEndDate(endOfWeek);
-  };
+    const handleWeekClick = () => {
+        const startOfWeek = new Date();
+        const endOfWeek = new Date(startOfWeek);
+        startOfWeek.setDate(endOfWeek.getDate() - startOfWeek.getDay());
+        endOfWeek.setDate(startOfWeek.getDate() + 6);
+        setStartDate(startOfWeek);
+        setEndDate(endOfWeek);
+    };
 
-  const handleMonthClick = () => {
-    const startOfMonth = new Date();
-    const endOfMonth = new Date(startOfMonth);
-    startOfMonth.setDate(1);
-    endOfMonth.setMonth(startOfMonth.getMonth() + 1, 0);
-    setStartDate(startOfMonth);
-    setEndDate(endOfMonth);
-  };
+    const handleMonthClick = () => {
+        const startOfMonth = new Date();
+        const endOfMonth = new Date(startOfMonth);
+        startOfMonth.setDate(1);
+        endOfMonth.setMonth(startOfMonth.getMonth() + 1, 0);
+        setStartDate(startOfMonth);
+        setEndDate(endOfMonth);
+    };
 
-  const handleClearRange = () => {
-    setStartDate(new Date());
-    setEndDate(new Date());
-  };
+    const handleClearRange = () => {
+        setStartDate(new Date());
+        setEndDate(new Date());
+    };
+
+    useEffect(() => {
+        getGamesRelasesRange(startDate, endDate)
+            .then((data) => {
+            setGames(data);
+            })
+            .catch(console.error);
+    }, [startDate, endDate]);
+
+    const grouped = groupGamesByDate(games);
 
   return (
     <div className="bg-surface text-on-surface min-h-screen">
@@ -54,6 +70,7 @@ export function Calendar() {
           <Sidebar />
     
             <main className="min-h-200 xl:pl-64 pt-20">
+                {/** Nube fondo */}
                 <div className="absolute left-100 -top-12 w-64 h-64 bg-[#8675e95d] rounded-full blur-[100px] pointer-events-none"></div>
                 {/** Title main section */}
                 <div className='grid grid-cols-1 ml-5 mb-10 mt-5'>
@@ -63,7 +80,7 @@ export function Calendar() {
                 
                 <div className="flex">
                 {/* Div que ocupa el 30% para el calendario */}
-                    <div className="w-2/10 p-5 rounded-xl border border-white/5 shadow-2xl">
+                    <div className="flex w-2/10 p-5 rounded-xl border border-white/5 shadow-2xl items-center justify-center">
                         <DatePicker
                             selected={startDate}
                             onChange={(dates) => {
@@ -140,19 +157,47 @@ export function Calendar() {
                             </div>
                         </div>
                     </div>
-                    {/* Contenido adicional */}
-                    <div>
-                        {/* Etiqueta Resultados encontrados */}
-
-
-                        {/* Contenido por días */}
-                        {/* Cabecera fecha con separador + fechas de dirección */}
-
+                </div>
+                {/* Contenido Filtrado */}
+                <div className='mt-10 mb-10'>
+                    {/* Etiqueta Resultados encontrados */}
+                    <div className="flex items-center gap-4 mb-4">
+                        <span className="px-3 py-1 bg-[#a4c9ff]/20 text-[#a4c9ff] text-[10px] font-black uppercase tracking-widest rounded">{games.length} results found for selected range</span>
                     </div>
+                    
+                </div>
+                {/* Contenido por días */}
+                <div className="flex flex-col gap-10 mt-10 mb-10">
+                    {Object.entries(grouped).map(([date, games]) => (
+                        
+                        <div key={date}>
+                            {/* 🗓️ Cabecera del día */}
+                            <div className="sticky top-28 z-10 flex items-baseline gap-4 mb-8">
+                                <h3 className="text-5xl font-headline font-black text-[#a4c9ff] italic">{formatReleaseDate(date)}</h3>
+                                <span className="text-sm font-label text-[#c9c4d8] font-bold uppercase tracking-widest">{weekdayFormatted(date)}</span>
+                                <div className="flex-grow h-px bg-gradient-to-r from-[#a4c9ff]/30 to-transparent"></div>
+                            </div>
+
+                            {/* 🎮 Juegos de ese día */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                                {games.map((g) => (
+                                    <GameCard
+                                        key={g.id}
+                                        title={g.title}
+                                        description={g.description}
+                                        image={defaultImage}
+                                        status={g.status}
+                                        platform="Solana Mainnet"
+                                    />
+                                ))}
+                            </div>
+
+                        </div>
+                    ))}
                 </div>
             </main >
-          <Footer />
-          <ScrollToTopButton />
+            <Footer />
+            <ScrollToTopButton />
         </div>
         
     
