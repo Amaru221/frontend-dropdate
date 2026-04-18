@@ -3,7 +3,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 const api = axios.create({
   //Para DEV
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api',
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://localhost:8000/api',
   //Para PROD
   //baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8085/api',
 });
